@@ -38,8 +38,10 @@ public class EntryPoint {
 		String jsonRequest = MessageHelper.createJsonOutMessage(message);
 		ccsClient.send(jsonRequest);
 
-		while (true) {
-			// TODO: Improve this because the app closes itself after the execution of the connect method
+		try {
+			Thread.currentThread().join();
+		} catch (InterruptedException ignored) {
+			//
 		}
 	}
 }
