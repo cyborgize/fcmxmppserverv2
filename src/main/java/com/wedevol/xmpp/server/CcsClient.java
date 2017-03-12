@@ -20,6 +20,7 @@ import org.jivesoftware.smack.filter.StanzaFilter;
 import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.provider.ExtensionElementProvider;
 import org.jivesoftware.smack.provider.ProviderManager;
+import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.sm.predicates.ForEveryStanza;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
@@ -107,6 +108,10 @@ public class CcsClient implements StanzaListener {
 
 		// Create the connection
 		connection = new XMPPTCPConnection(config.build());
+
+		// Disable roster
+		Roster roster = Roster.getInstanceFor(connection);
+		roster.setRosterLoadedAtLogin(false);
 
 		// Connect
 		connection.connect();
